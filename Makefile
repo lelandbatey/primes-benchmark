@@ -14,7 +14,7 @@ sources/cpp_prime_generator: sources/prime-sieve.cpp
 	clang++ -std=c++11 sources/prime-sieve.cpp -O3 -o sources/cpp_prime_generator
 
 sources/rust_prime_generator: sources/prime-sieve.rs
-	rustc prime-sieve.rs -O -o rust_prime_generator
+	rustc sources/prime-sieve.rs -O -o sources/rust_prime_generator
 
 sources/prime-sieve.rs:
 	git clone $(SOURCE_REPO) sources/

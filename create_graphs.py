@@ -70,7 +70,7 @@ def main():
 	plt.tight_layout()
 	plt.subplots_adjust(top=0.88)
 
-	f.savefig('performance.png', bbox_inches='tight')
+	f.savefig('performance.png', bbox_inches='tight', dpi=300)
 
 	#pprint(cpp_performance)
 	#pprint(rust_performance)
