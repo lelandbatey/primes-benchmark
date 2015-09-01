@@ -58,6 +58,7 @@ def main():
 	ax1.set_ylabel('Runtime (seconds)')
 	ax1.set_xlabel('Experiment number')
 	ax1.legend(fontsize='x-small')
+	ax1.set_ylim(0, (lambda x: x+0.25*x)(max(cpp_time+rust_time)))
 
 	ax2.plot(cpp_mem, label='C++', color='blue')
 	ax2.plot(rust_mem, label='Rust', color='red')
