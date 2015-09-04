@@ -46,31 +46,36 @@ def main():
 	cpp_mem = [x/1000.0 for x in cpp_mem]
 	rust_mem = [x/1000.0 for x in rust_mem]
 
+	cpp_nthprime = extract_key(cpp_performance, 'prime')
+	rust_nthprime = extract_key(rust_performance, 'prime')
+
 	fontP = FontProperties()
 	fontP.set_size('xx-small')
 
 	f, (ax1, ax2) = plt.subplots(1, 2)
 	f.suptitle('Language Performance Generating One Million Primes', fontsize=15)
 
-	ax1.plot(cpp_time, label='C++', color='blue')
-	ax1.plot(rust_time, label='Rust', color='red')
+	ax1.plot(cpp_nthprime, cpp_time, label='C++', color='blue')
+	ax1.plot(rust_nthprime, rust_time, label='Rust', color='red')
 	ax1.set_title('Speed')
 	ax1.set_ylabel('Runtime (seconds)')
-	ax1.set_xlabel('Experiment number')
+	ax1.set_xlabel('Nth Prime Generated')
 	ax1.legend(fontsize='x-small')
 	ax1.set_ylim(0, (lambda x: x+0.25*x)(max(cpp_time+rust_time)))
 
-	ax2.plot(cpp_mem, label='C++', color='blue')
-	ax2.plot(rust_mem, label='Rust', color='red')
+	ax2.plot(cpp_nthprime, cpp_mem, label='C++', color='blue')
+	ax2.plot(rust_nthprime, rust_mem, label='Rust', color='red')
 	ax2.set_title('Memory')
 	ax2.set_ylabel('Maximum Resident Set Size (mbytes)')
-	ax2.set_xlabel('Experiment number')
+	ax2.set_xlabel('Nth Prime Generated')
 	ax2.legend(fontsize='x-small')
 	ax2.set_ylim(0, max(cpp_mem + rust_mem)+0.25*max(rust_mem))
 
 	plt.tight_layout()
 	plt.subplots_adjust(top=0.88)
 
+	# Autoformats the x axis so all numbers are visible
+	f.autofmt_xdate()
 	f.savefig('performance.png', bbox_inches='tight', dpi=300)
 
 	#pprint(cpp_performance)
